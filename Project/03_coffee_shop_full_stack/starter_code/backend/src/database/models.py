@@ -5,7 +5,11 @@ import json
 
 database_filename = "database.db"
 project_dir = os.path.dirname(os.path.abspath(__file__))
-database_path = "sqlite:///{}".format(os.path.join(project_dir, database_filename))
+DB_HOST = os.getenv('DB_HOST', '127.0.0.1:5432')  
+DB_USER = os.getenv('DB_USER', 'postgres')  
+DB_PASSWORD = os.getenv('DB_PASSWORD', '#Oloyede1')  
+DB_NAME = os.getenv('DB_NAME', 'coffee')  
+database_path = 'postgresql+psycopg2://{}:{}@{}/{}'.format(DB_USER, DB_PASSWORD, DB_HOST, DB_NAME)
 
 db = SQLAlchemy()
 
